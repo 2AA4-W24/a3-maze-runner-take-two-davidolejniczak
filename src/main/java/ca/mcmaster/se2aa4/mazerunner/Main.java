@@ -27,7 +27,7 @@ public class Main {
                     System.out.println("incorrect path");
                 }
             } else {
-                String method = cmd.getOptionValue("method", "righthand");
+                String method = cmd.getOptionValue("method", "SSSP");
                 Path path = solveMaze(method, maze);
                 System.out.println(path.getFactorizedForm());
             }
@@ -59,11 +59,14 @@ public class Main {
                 logger.debug("Tremaux algorithm chosen.");
                 solver = new TremauxSolver();
             }
+            case "SSSP" -> {
+                logger.debug("SSSP algorithm chosen ");
+                solver = new SSSPSolver();
+            }
             default -> {
                 throw new Exception("Maze solving method '" + method + "' not supported.");
             }
         }
-
         logger.info("Computing path");
         return solver.solve(maze);
     }
@@ -82,6 +85,7 @@ public class Main {
 
         options.addOption(new Option("p", true, "Path to be verified in maze"));
         options.addOption(new Option("method", true, "Specify which path computation algorithm will be used"));
+        options.addOption(new Option("baseline",true,"Comparison of path computation of two given paths"));
 
         return options;
     }
