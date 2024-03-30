@@ -36,7 +36,6 @@ public class Main {
             logger.error("MazeSolver failed.  Reason: " + e.getMessage());
             logger.error("PATH NOT COMPUTED");
         }
-
         logger.info("End of MazeRunner");
     }
 
