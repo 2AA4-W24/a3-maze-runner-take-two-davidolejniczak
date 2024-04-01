@@ -14,19 +14,23 @@ public class SSSPSolver implements MazeSolver {
         currPos = maze.getStart();
         prevPos = null;
         logger.debug("Marking entrance");
-        edgeweightsStorage();
-        edgeweights();
+        graphStorage();
+        logger.debug("Making graph storage");
+        graphweights();
+        logger.debug("Assigning weights to nodes and edges");
         return algo();
     }
     private Path algo() {
         Path path = new Path();
+        logger.debug("Started solving algo");
         //algo
+        logger.debug("Ended solving algo");
         return path;
     }
-    private void edgeweights() {
+    private void graphweights() {
         //algo to assign edge weights
     }
-    private void edgeweightsStorage() {
+    private void graphStorage() {
         int x = maze.getSizeX();
         int y = maze.getSizeY();
         int[][] weights  = new int[x][y];
