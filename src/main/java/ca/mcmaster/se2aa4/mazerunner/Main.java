@@ -27,6 +27,7 @@ public class Main {
                     System.out.println("incorrect path");
                 }
             } else {
+                logger.info("Shortest path algo chosen");
                 String method = cmd.getOptionValue("method", "SSSP");
                 Path path = solveMaze(method, maze);
                 System.out.println(path.getFactorizedForm());
