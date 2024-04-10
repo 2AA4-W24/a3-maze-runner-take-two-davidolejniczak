@@ -6,6 +6,7 @@ public enum Direction {
     LEFT,
     RIGHT;
 
+
     /**
      * Get the direction to the right of the current one.
      *
@@ -51,4 +52,27 @@ public enum Direction {
         }
         throw new IllegalStateException("Unexpected value: " + this);
     }
+    public char stepTurn(Direction currDir, Direction nextDir) {
+        if (currDir.turnLeft() == nextDir) {
+            return 'L';
+        } else if (currDir.turnRight() == nextDir){
+            return 'R';
+        } else {
+            return 'F';
+        }
+    }
+    public Direction directionTurn(Position currPos, Position prevPos) {
+        int xPos = currPos.x() - prevPos.x();
+        int yPos = currPos.y() - prevPos.y();
+        if (xPos == 0 && yPos == -1) {
+            return Direction.UP;
+        } else if (xPos == 0 && yPos == 1) {
+            return Direction.DOWN;
+        } else if (xPos == 1 && yPos == 0) {
+            return Direction.RIGHT;
+        } else {
+            return Direction.LEFT;
+        }
+    }
+
 }

@@ -7,6 +7,8 @@ import org.apache.logging.log4j.Logger;
 public class Main {
 
     private static final Logger logger = LogManager.getLogger();
+    private static Path pathBaseLine;
+    private static Path path;
 
     public static void main(String[] args) {
         logger.info("** Starting Maze Runner");
@@ -15,12 +17,22 @@ public class Main {
         CommandLine cmd = null;
         try {
             cmd = parser.parse(getParserOptions(), args);
+            if (cmd.hasOption("baseline")) {
+                logger.info("Baseline chosen");
+                String filePath = cmd.getOptionValue('i');
+                long startTime = System.currentTimeMillis();
+                Maze maze = new Maze(filePath);
+                long finishTime = System.currentTimeMillis();
+                long totalTime = finishTime - startTime;
+                System.out.println("Time spent loading the maze : " + totalTime + " ms");
+                String baselineMethod = cmd.getOptionValue("baseline");
+                pathBaseLine = baselineExploreMaze(baselineMethod,maze);
+            }
             String filePath = cmd.getOptionValue('i');
             Maze maze = new Maze(filePath);
-
             if (cmd.getOptionValue("p") != null) {
                 logger.info("Validating path");
-                Path path = new Path(cmd.getOptionValue("p"));
+                path = new Path(cmd.getOptionValue("p"));
                 if (maze.validatePath(path)) {
                     System.out.println("correct path");
                 } else {
@@ -29,15 +41,30 @@ public class Main {
             } else {
                 logger.info("Shortest path algo chosen");
                 String method = cmd.getOptionValue("method", "SSSP");
-                Path path = solveMaze(method, maze);
+                if (cmd.hasOption("baseline")) {
+                    long startTime = System.currentTimeMillis();
+                    path = solveMaze(method, maze);
+                    long finishTime = System.currentTimeMillis();
+                    long totalTime = finishTime - startTime;
+                    System.out.println("Time using selected method : " + totalTime + " ms");
+                    System.out.println(path.getFactorizedForm());
+                    calcSpeedUp();
+                } else {
+                path = solveMaze(method, maze);
                 System.out.println(path.getFactorizedForm());
-            }
+            } }
         } catch (Exception e) {
             System.err.println("MazeSolver failed.  Reason: " + e.getMessage());
             logger.error("MazeSolver failed.  Reason: " + e.getMessage());
             logger.error("PATH NOT COMPUTED");
         }
         logger.info("End of MazeRunner");
+    }
+
+    private static void calcSpeedUp() {
+        double SpeedUp = (double) pathBaseLine.getPathSize() / path.getPathSize();
+        String SpeedUpRounded = String.format("%.2f",SpeedUp);
+        System.out.println("The speedup is : " + SpeedUpRounded);
     }
 
     /**
@@ -88,5 +115,33 @@ public class Main {
         options.addOption(new Option("baseline",true,"Comparison of path computation of two given paths"));
 
         return options;
+    }
+    private static Path baselineExploreMaze(String baselineMethod, Maze maze) throws Exception {
+        MazeSolver solver = null;
+        switch (baselineMethod) {
+            case "righthand" -> {
+                logger.debug("Baseline RightHand algorithm chosen.");
+                solver = new RightHandSolver();
+            }
+            case "tremaux" -> {
+                logger.debug("Baseline Tremaux algorithm chosen.");
+                solver = new TremauxSolver();
+            }
+            case "SSSP" -> {
+                logger.debug("Baseline SSSP algorithm chosen ");
+                solver = new SSSPSolver();
+            }
+            default -> {
+                throw new Exception("Baseline method '" + baselineMethod + "' not supported.");
+            }
+        }
+        logger.info("Computing -baseline path");
+        long startTime = System.currentTimeMillis();
+        Path path = solver.solve(maze);
+        long finsihTime = System.currentTimeMillis();
+        long totalTime = finsihTime - startTime;
+        System.out.println("Baseline method algorithm time : " + totalTime + " ms");
+        return path;
+
     }
 }

@@ -56,7 +56,6 @@ public class Maze {
         }
         throw new Exception("Invalid maze (no start position available)");
     }
-
     /**
      * Find start end of the maze.
      *

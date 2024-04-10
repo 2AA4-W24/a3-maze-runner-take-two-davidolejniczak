@@ -126,4 +126,7 @@ public class Path {
 
         return sb.toString();
     }
+    public int getPathSize() {
+        return path.size();
+    }
 }
