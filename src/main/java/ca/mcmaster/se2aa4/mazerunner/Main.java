@@ -20,10 +20,10 @@ public class Main {
             if (cmd.hasOption("baseline")) {
                 logger.info("Baseline chosen");
                 String filePath = cmd.getOptionValue('i');
-                long start = System.currentTimeMillis();
+                double start = System.currentTimeMillis();
                 Maze maze = new Maze(filePath);
-                long finish = System.currentTimeMillis();
-                long total = finish - start;
+                double finish = System.currentTimeMillis();
+                double total = finish - start;
                 System.out.println("Time spent loading the maze : " + total + " ms");
                 String baselineMethod = cmd.getOptionValue("baseline");
                 pathBaseLine = baseLineMazeSolver(baselineMethod,maze);
@@ -42,10 +42,10 @@ public class Main {
                 logger.info("Shortest path algo chosen");
                 String method = cmd.getOptionValue("method", "SSSP");
                 if (cmd.hasOption("baseline")) {
-                    long start = System.currentTimeMillis();
+                    double start = System.currentTimeMillis();
                     path = solveMaze(method, maze);
-                    long finish = System.currentTimeMillis();
-                    long total = finish - start;
+                    double finish = System.currentTimeMillis();
+                    double total = finish - start;
                     System.out.println("Time using selected method : " + total + " ms");
                     System.out.println(path.getFactorizedForm());
                     calcSpeedUp();
@@ -136,10 +136,10 @@ public class Main {
             }
         }
         logger.info("Computing -baseline path");
-        long start = System.currentTimeMillis();
+        double start = System.currentTimeMillis();
         Path path = solver.solve(maze);
-        long finish = System.currentTimeMillis();
-        long total = finish - start;
+        double finish = System.currentTimeMillis();
+        double total = finish - start;
         System.out.println("Baseline method algorithm time : " + total + " ms");
         return path;
 
