@@ -20,13 +20,13 @@ public class Main {
             if (cmd.hasOption("baseline")) {
                 logger.info("Baseline chosen");
                 String filePath = cmd.getOptionValue('i');
-                long startTime = System.currentTimeMillis();
+                long start = System.currentTimeMillis();
                 Maze maze = new Maze(filePath);
-                long finishTime = System.currentTimeMillis();
-                long totalTime = finishTime - startTime;
-                System.out.println("Time spent loading the maze : " + totalTime + " ms");
+                long finish = System.currentTimeMillis();
+                long total = finish - start;
+                System.out.println("Time spent loading the maze : " + total + " ms");
                 String baselineMethod = cmd.getOptionValue("baseline");
-                pathBaseLine = baselineExploreMaze(baselineMethod,maze);
+                pathBaseLine = baseLineMazeSolver(baselineMethod,maze);
             }
             String filePath = cmd.getOptionValue('i');
             Maze maze = new Maze(filePath);
@@ -42,11 +42,11 @@ public class Main {
                 logger.info("Shortest path algo chosen");
                 String method = cmd.getOptionValue("method", "SSSP");
                 if (cmd.hasOption("baseline")) {
-                    long startTime = System.currentTimeMillis();
+                    long start = System.currentTimeMillis();
                     path = solveMaze(method, maze);
-                    long finishTime = System.currentTimeMillis();
-                    long totalTime = finishTime - startTime;
-                    System.out.println("Time using selected method : " + totalTime + " ms");
+                    long finish = System.currentTimeMillis();
+                    long total = finish - start;
+                    System.out.println("Time using selected method : " + total + " ms");
                     System.out.println(path.getFactorizedForm());
                     calcSpeedUp();
                 } else {
@@ -116,7 +116,7 @@ public class Main {
 
         return options;
     }
-    private static Path baselineExploreMaze(String baselineMethod, Maze maze) throws Exception {
+    private static Path baseLineMazeSolver(String baselineMethod, Maze maze) throws Exception {
         MazeSolver solver = null;
         switch (baselineMethod) {
             case "righthand" -> {
@@ -136,11 +136,11 @@ public class Main {
             }
         }
         logger.info("Computing -baseline path");
-        long startTime = System.currentTimeMillis();
+        long start = System.currentTimeMillis();
         Path path = solver.solve(maze);
-        long finsihTime = System.currentTimeMillis();
-        long totalTime = finsihTime - startTime;
-        System.out.println("Baseline method algorithm time : " + totalTime + " ms");
+        long finish = System.currentTimeMillis();
+        long total = finish - start;
+        System.out.println("Baseline method algorithm time : " + total + " ms");
         return path;
 
     }

@@ -71,22 +71,22 @@ public class SSSPSolver implements MazeSolver {
      */
     private Path BFS() {
         logger.info("Beginning BFS Algorithm");
-        Map<Position, Integer> distance = new HashMap<>();
+        Map<Position, Boolean> distance = new HashMap<>();
         Map<Position, Position> marked = new HashMap<>();
         Queue<Position> Q = new LinkedList<>();
         for (Position node : BFSGraph.keySet()){;
-            distance.put(node, 0x99999);
+            distance.put(node, false);
             marked.put(node, null);
         }
         Q.add(startNode);
-        distance.put(startNode, 0);
+        distance.put(startNode, true);
         while (!Q.isEmpty()) {
             Position tempPos = Q.remove();
             if (tempPos == endNode) break;
             for (Position neighbourPos : BFSGraph.get(tempPos)) {
-                if (distance.get(neighbourPos) == 0x99999) {
+                if (!distance.get(neighbourPos)) {
                     Q.add(neighbourPos);
-                    distance.put(neighbourPos, distance.get(tempPos)+1);
+                    distance.put(neighbourPos, true);
                     marked.put(neighbourPos, tempPos);
                 }
             }
