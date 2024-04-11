@@ -2,6 +2,7 @@ package ca.mcmaster.se2aa4.mazerunner;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -47,14 +48,23 @@ public class SSSPSolverTest {
         assertFalse(neighboursEnd.isEmpty());
     }
     @Test
-    public void testPath() throws Exception {
+    public void testSSSPSmallMaze() throws Exception {
         Maze maze = new Maze("examples/straight.maz.txt");
         SSSPSolver solver = new SSSPSolver();
         Path path = solver.solve(maze);
-        String expectedPathString = "4F";
-        String actualPathString = path.getFactorizedForm();
+        String answer = "4F";
+        String SSSPAnswer = path.getFactorizedForm();
         assertNotNull(path);
-        assertEquals(expectedPathString, actualPathString);
+        assertEquals(answer, SSSPAnswer);
     }
-
+    @Test
+    public void testSSSPLargeMaze() throws Exception {
+        Maze maze = new Maze("examples/giant.maz.txt");
+        SSSPSolver solver = new SSSPSolver();
+        Path path = solver.solve(maze);
+        String answer = "F L 2F R 2F L 6F R 2F L 6F R 2F R 2F L 2F R 2F L 2F R 8F L 4F R 4F L 6F R 2F L 4F R 2F L 2F R 4F L 4F R 2F L 18F R 4F L 4F R 2F L 2F R 2F L 4F R 4F L 2F R 2F L 2F L 2F R 4F L 2F R 4F L 2F R 10F L 6F R 2F L 2F R 6F L 2F R 2F R 4F L 2F R 2F L 14F R 4F L 4F R 2F L 2F R 8F L 10F R 2F L 4F R 2F L 6F R 2F L 4F R 2F L 6F L 2F R 2F L 4F R 5F";
+        String SSSPAnswer = path.getFactorizedForm();
+        assertNotNull(path);
+        assertEquals(answer, SSSPAnswer);
+    }
 }
