@@ -6,9 +6,11 @@
 * **Course Title**: Software Design I - Introduction to Software Development
 * Term: *Level II - Winter 2024*
 
-# Code is based on [AlexandreLachanceGit] A1 solution code
-# Full credit and thank you to [AlexandreLachanceGit] for the provided code
-# All algorithm and data structure information was based on Dr.Hellings - jhellings@mcmaster.ca - Winter 2024 2CO3 lecture slides
+### Code is based on [AlexandreLachanceGit] A1 solution code 
+
+### Full credit and thank you to [AlexandreLachanceGit] for the provided code
+
+### All algorithm and data structure information was based on Dr.Hellings - jhellings@mcmaster.ca - Winter 2024 2CO3 lecture slides
 
 ##### Example of how to use the Shortest Path algorithm
 The shortest path algorithm is called SSSP
