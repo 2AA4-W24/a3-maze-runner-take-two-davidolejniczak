@@ -5,13 +5,14 @@
 * **Course code**: SFWRENG 2AA4
 * **Course Title**: Software Design I - Introduction to Software Development
 * Term: *Level II - Winter 2024*
+_____________________
+#### Code is based on [AlexandreLachanceGit] A1 solution code 
 
-### Code is based on [AlexandreLachanceGit] A1 solution code 
+#### Full credit and thank you to [AlexandreLachanceGit] for the provided code
 
-### Full credit and thank you to [AlexandreLachanceGit] for the provided code
-
-### All algorithm and data structure information was based on Dr.Hellings - jhellings@mcmaster.ca - Winter 2024 2CO3 lecture slides
-
+#### All algorithm and data structure information was based on Dr.Hellings - jhellings@mcmaster.ca - Winter 2024 2CO3 lecture slides
+___________________
+## My work in this projcet
 ##### Example of how to use the Shortest Path algorithm
 The shortest path algorithm is called SSSP
 Use "-method SSSP" in the input line to call this algorithm
@@ -34,7 +35,7 @@ The speedup is : 1.00
 davidolejniczak@David:~/a3-maze-runner-take-two-davidolejniczak$ 
 
 ```
-
+____________________
 ## Business Logic Specification
 
 This program explores a maze, finding a path from an entry point to an exit one.
@@ -109,10 +110,7 @@ The delivered program at the end of this assignment should use the following fla
 
 - `-i MAZE_FILE`: specifies the filename to be used;
 - `-p PATH_SEQUENCE`: activates the path verification mode to validate that PATH_SEQUENCE is correct for the maze
-
-If you are also delivering the bonus, your program will react to a third flag:
-
-- `-method {tremaux, righthand}`: specifies which path computation method to use. (default is right hand)
+- `-method {tremaux, righthand, SSSP}`: specifies which path computation method to use. (default is SSSP); SSSP is the shortest path algorithm 
 
 #### Examples
 
@@ -140,3 +138,15 @@ inccorrect path
 mosser@azrael A1-Template %
 ```
 
+When using the baseline comparison the program prints out the time spent loading the maze,
+the time taken for the baseline algorithm to run, the time taken for the method algorithm to run. 
+```
+davidolejniczak@David:~/a3-maze-runner-take-two-davidolejniczak$ java -jar target/mazerunner.jar -i ./examples/straight.maz.txt -method SSSP -baseline righthand
+Time spent loading the maze : 1.0 ms
+Baseline method algorithm time : 8.0 ms
+Time using selected method : 4.0 ms
+4F
+The speedup is : 1.00
+davidolejniczak@David:~/a3-maze-runner-take-two-davidolejniczak$ 
+
+```
