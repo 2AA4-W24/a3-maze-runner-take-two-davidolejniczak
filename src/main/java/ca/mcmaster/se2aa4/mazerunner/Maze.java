@@ -160,12 +160,4 @@ public class Maze {
 
         return pos.equals(endPos);
     }
-    public Integer getStartX(){
-        return start.x();
-    }
-    public Integer getStartY() {
-        return start.y();
-    }
-    public Integer getEndX() {return end.x();}
-    public Integer getEndY() {return end.y();}
 }
