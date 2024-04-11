@@ -6,11 +6,11 @@
 * **Course Title**: Software Design I - Introduction to Software Development
 * Term: *Level II - Winter 2024*
 _____________________
-#### Code is based on [AlexandreLachanceGit] A1 solution code 
+#### Code is based on [Alexandre Lachance](alexandrelachance@me.com) A1 solution code 
 
-#### Full credit and thank you to [AlexandreLachanceGit] for the provided code
+#### Full credit and thank you to [Alexandre Lachance](alexandrelachance@me.com) for the provided code
 
-#### All algorithm and data structure information was based on Dr.Hellings - jhellings@mcmaster.ca - Winter 2024 2CO3 lecture slides
+#### All algorithm and data structure information was based on [Dr. Jelle Hellings](jhellings@mcmaster.ca) Winter 2024 2CO3 lecture slides
 ___________________
 ## My work in this projcet
 ##### Example of how to use the Shortest Path algorithm
