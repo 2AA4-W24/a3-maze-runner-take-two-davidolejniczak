@@ -1,10 +1,37 @@
-# Assignment A1 - Maze Runner
+# Assignment A3 - Maze Runner - take two
 
-* **Student**: [FIRSTNAME LASTNAME](MACID@mcmaster.ca)
+* **Student**: [David Olejniczak](olejnicd@mcmaster.ca)
 * **Program**: B. Eng. In Software Engineering
 * **Course code**: SFWRENG 2AA4
 * **Course Title**: Software Design I - Introduction to Software Development
 * Term: *Level II - Winter 2024*
+
+# Code is based on [AlexandreLachanceGit] A1 solution code
+# Full credit and thank you to [AlexandreLachanceGit] for the provided code
+# All algorithm and data structure information was based on Dr.Hellings - jhellings@mcmaster.ca - Winter 2024 2CO3 lecture slides
+
+##### Example of how to use the Shortest Path algorithm
+The shortest path algorithm is called SSSP
+Use "-method SSSP" in the input line to call this algorithm
+```
+davidolejniczak@David:~/a3-maze-runner-take-two-davidolejniczak$ java -jar target/mazerunner.jar -i ./examples/straight.maz.txt -method SSSP
+4F
+davidolejniczak@David:~/a3-maze-runner-take-two-davidolejniczak$ 
+```
+
+##### Example of how to use baseline to compare two algorithms
+Use "-baseline XXX" XXX being an algorithm
+The speedup is calculated based on the number of characters in the (baseline algorithm path) / (method algorithm path)
+```
+davidolejniczak@David:~/a3-maze-runner-take-two-davidolejniczak$ java -jar target/mazerunner.jar -i ./examples/straight.maz.txt -method SSSP -baseline righthand
+Time spent loading the maze : 1.0 ms
+Baseline method algorithm time : 8.0 ms
+Time using selected method : 4.0 ms
+4F
+The speedup is : 1.00
+davidolejniczak@David:~/a3-maze-runner-take-two-davidolejniczak$ 
+
+```
 
 ## Business Logic Specification
 
@@ -12,20 +39,20 @@ This program explores a maze, finding a path from an entry point to an exit one.
 
 - The maze is stored in a text file, with `#` representing walls and `␣` (_empty space_) representing passages.
 - You’ll find examples of such mazes in the [`examples`](./examples) directory.
-    - You can also use the [Maze Generator](https://github.com/ace-lectures/maze-gen) to generate others.
+  - You can also use the [Maze Generator](https://github.com/ace-lectures/maze-gen) to generate others.
 - The Maze is surrounded by walls on its four borders, except for its entry/exit points.
-    - Entry and exit points are always located on the East and West border.
-    - The maze is not directed. As such, exit and entry can be interchanged.
+  - Entry and exit points are always located on the East and West border.
+  - The maze is not directed. As such, exit and entry can be interchanged.
 - At the beginning of the exploration, we're located on the entry tile, facing the opposite side (e.g., if entering by
   the eastern entry, you're facing West).
 - The program generates a sequence of instructions to reach the opposite exit (i.e., a "path"):
-    - `F` means 'move forward' according to your current direction
-    - `R` means 'turn right' (does not move, just change direction), and `L` means ‘turn left’.
+  - `F` means 'move forward' according to your current direction
+  - `R` means 'turn right' (does not move, just change direction), and `L` means ‘turn left’.
 - A canonical path contains only `F`, `R` and `L` symbols
 - A factorized path squashes together similar instructions (i.e., `FFF` = `3F`, `LL` = `2L`).
 - Spaces are ignored in the instruction sequence (only for readability: `FFLFF` = `FF L FF`)
 - The program takes as input a maze and print the path on the standard output.
-    - For this assignment, the path does not have to be the shortest one.
+  - For this assignment, the path does not have to be the shortest one.
 - The program can take a path as input and verify if it's a legit one.
 
 ## How to run this software?
