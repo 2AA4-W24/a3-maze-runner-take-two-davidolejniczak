@@ -117,6 +117,10 @@ public class SSSPSolver implements MazeSolver {
         }
         return shortestPath;
     }
+
+    public Map<Position, List<Position>> getBFSGraph() {
+        return BFSGraph;
+    }
 }
 
 
